@@ -1,4 +1,4 @@
-require('dotenv').config({ path: 'variables.env' });
+require('dotenv').config({path: 'variables.env'});
 
 const express = require('express');
 const webPush = require('web-push');
@@ -24,16 +24,11 @@ app.post('/subscribe', (req, res) => {
 
   let idx = 0;
   console.log('subbing', subscription)
-  // setInterval(() => {
-  //   idx++;
-  //   const payload = JSON.stringify({
-  //     title: 'Push notifications with Service Workers '+idx,
-  //   });
-  //
-  //   webPush.sendNotification(subscription, payload)
-  //     .catch(error => console.error(error));
-  //
-  // }, 5000)
+  const payload = JSON.stringify({
+    title: 'Push notifications with Service Workers ' + idx,
+  });
+  webPush.sendNotification(subscription, payload)
+    .catch(error => console.error(error));
 });
 
 app.set('port', process.env.PORT || 5000);
