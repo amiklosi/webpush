@@ -27,8 +27,11 @@ app.post('/subscribe', (req, res) => {
   const payload = JSON.stringify({
     title: 'Push notifications with Service Workers ' + idx,
   });
-  webPush.sendNotification(subscription, payload)
-    .catch(error => console.error(error));
+
+  setTimeout(()=> {
+    webPush.sendNotification(subscription, payload)
+      .catch(error => console.error(error));
+  }, 5000);
 });
 
 app.set('port', process.env.PORT || 5000);
